@@ -14,10 +14,9 @@ local bubba      = 1596003233 -- DO NOT CHANGE
 --- Do not touch anything above this line unless you know what youre doing!!! 
 
 Citizen.CreateThread(function()
-
 	RequestModel(carlos)
 	while not HasModelLoaded(carlos) do
-	Wait(1)
+	    Wait(1)
 	end
 	ped = CreatePed(1, carlos, Config.Dealer.x, Config.Dealer.y, Config.Dealer.z, 40.0, false, true)
 	SetBlockingOfNonTemporaryEvents(ped, true)
@@ -32,17 +31,20 @@ end)
 Citizen.CreateThread(function()
     while true do
 		Wait(0)
-		if PlayerPedId() then
-            local playerPed = PlayerPedId()
-			local location = GetEntityCoords(playerPed)
-			if GetDistanceBetweenCoords(location, Config.Dealer.x, Config.Dealer.y, Config.Dealer.z, true) < 2 then
-				ESX.ShowHelpNotification('Press ~INPUT_CONTEXT~ to talk with Little Timmy')
-				if IsControlJustPressed(1, 38) then
-					TriggerServerEvent('recovery:payup', Config.UsbPrice)
-				elseif IsControlJustPressed(1, 38) then
-					ESX.ShowNotification('invalid amount')
-				end
+        local playerPed = PlayerPedId()
+	    local location = GetEntityCoords(playerPed)
+		local letSleep = true
+		if GetDistanceBetweenCoords(location, Config.Dealer.x, Config.Dealer.y, Config.Dealer.z, true) < 2 then
+		    letSleep = false
+			ESX.ShowHelpNotification('Press ~INPUT_CONTEXT~ to talk with Little Timmy')
+			if IsControlJustPressed(1, 38) then
+				TriggerServerEvent('recovery:payup', Config.UsbPrice)
+			elseif IsControlJustPressed(1, 38) then
+				ESX.ShowNotification('invalid amount')
 			end
+		end
+		if letSleep then
+		    Wait(500)
 		end
 	end
 end)
@@ -58,10 +60,9 @@ AddEventHandler('sov:paidprice', function(pay)
 end)
 
 Citizen.CreateThread(function()
-
 	RequestModel(troy)
 	while not HasModelLoaded(troy) do
-	Wait(1)
+	    Wait(1)
 	end
 	ped = CreatePed(1, troy, Config.Hustler.x, Config.Hustler.y, Config.Hustler.z, 40.0, false, true)
 	SetBlockingOfNonTemporaryEvents(ped, true)
@@ -71,22 +72,24 @@ Citizen.CreateThread(function()
 	SetEntityInvincible(ped, true)
 	FreezeEntityPosition(ped, true)
 	TaskStartScenarioInPlace(ped, "WORLD_HUMAN_SMOKING", 0, true);
-
 end)
 Citizen.CreateThread(function()
     while true do
 		Wait(0)
-		if PlayerPedId() then
-            local playerPed = PlayerPedId()
-			local location = GetEntityCoords(playerPed)
-			if GetDistanceBetweenCoords(location, Config.Hustler.x, Config.Hustler.y, Config.Hustler.z, true) < 2 then
-				ESX.ShowHelpNotification('Press ~INPUT_CONTEXT~ to talk with Atmin Kendro')
-				if IsControlJustPressed(1, 38) then
-					TriggerServerEvent('recovery:paidup', Config.laptopPrice)
-				elseif IsControlJustPressed(1, 38) then
-					ESX.ShowNotification('invalid amount')
-				end
+        local playerPed = PlayerPedId()
+	    local location = GetEntityCoords(playerPed)
+		local letSleep = true
+		if GetDistanceBetweenCoords(location, Config.Hustler.x, Config.Hustler.y, Config.Hustler.z, true) < 2 then
+		    letSleep = false
+			ESX.ShowHelpNotification('Press ~INPUT_CONTEXT~ to talk with Kendro')
+			if IsControlJustPressed(1, 38) then
+				TriggerServerEvent('recovery:paidup', Config.laptopPrice)
+			elseif IsControlJustPressed(1, 38) then
+				ESX.ShowNotification('invalid amount')
 			end
+		end
+		if letSleep then
+		    Wait(500)
 		end
 	end
 end)
@@ -95,18 +98,17 @@ RegisterNetEvent('sov:payd')
 AddEventHandler('sov:payd', function(payd)
 	if payd then
 		ESX.ShowNotification("You paid $" .. Config.laptopPrice)
-		ESX.ShowAdvancedNotification('Head Atmin Kendra', 'AtminPolice', 'Aint get it from me mofucka!', 'CHAR_LESTER', 1)
+		ESX.ShowAdvancedNotification('Kendro', '', 'Aint get it from me mofucka!', 'CHAR_LESTER', 1)
 	else
-		ESX.ShowAdvancedNotification('Head Atmin Kendra', 'AtminPolice', 'Step off my block!', 'CHAR_LESTER', 1)
+		ESX.ShowAdvancedNotification('Kendro', '', 'Step off my block!', 'CHAR_LESTER', 1)
 	end
 end)
 
 
 Citizen.CreateThread(function()
-
 	RequestModel(hector)
 	while not HasModelLoaded(hector) do
-	Wait(1)
+	    Wait(1)
 	end
 	ped = CreatePed(1, hector, Config.Smuggler.x, Config.Smuggler.y, Config.Smuggler.z, 40.0, false, true)
 	SetBlockingOfNonTemporaryEvents(ped, true)
@@ -116,32 +118,33 @@ Citizen.CreateThread(function()
 	SetEntityInvincible(ped, true)
 	FreezeEntityPosition(ped, true)
 	TaskStartScenarioInPlace(ped, "WORLD_HUMAN_SMOKING", 0, true);
-
 end)
 Citizen.CreateThread(function()
     while true do
 		Wait(0)
-		if PlayerPedId() then
-            local playerPed = PlayerPedId()
-			local location = GetEntityCoords(playerPed)
-			if GetDistanceBetweenCoords(location, Config.Smuggler.x, Config.Smuggler.y, Config.Smuggler.z, true) < 2 then
-				ESX.ShowHelpNotification('Press ~INPUT_CONTEXT~ to talk with this vato')
-				if IsControlJustPressed(1, 38) then
-					TriggerServerEvent('recovery:smuggler', Config.laptopPrice)
-					TriggerServerEvent('sov:notifyPolice')
-				elseif IsControlJustPressed(1, 38) then
-					ESX.ShowNotification('invalid amount')
-				end
+        local playerPed = PlayerPedId()
+		local location = GetEntityCoords(playerPed)
+		local letSleep = true
+		if GetDistanceBetweenCoords(location, Config.Smuggler.x, Config.Smuggler.y, Config.Smuggler.z, true) < 2 then
+		    letSleep = false
+			ESX.ShowHelpNotification('Press ~INPUT_CONTEXT~ to talk with this vato')
+			if IsControlJustPressed(1, 38) then
+				TriggerServerEvent('recovery:smuggler', Config.laptopPrice)
+				TriggerServerEvent('sov:notifyPolice')
+			elseif IsControlJustPressed(1, 38) then
+				ESX.ShowNotification('invalid amount')
 			end
+		end
+		if letSleep then
+		    Wait(500)
 		end
 	end
 end)
 
 Citizen.CreateThread(function()
-
 	RequestModel(bubba)
 	while not HasModelLoaded(bubba) do
-	Wait(1)
+	    Wait(1)
 	end
 	ped = CreatePed(1, bubba, Config.ArmsDealer.x, Config.ArmsDealer.y, Config.ArmsDealer.z, 40.0, false, true)
 	SetBlockingOfNonTemporaryEvents(ped, true)
@@ -151,23 +154,25 @@ Citizen.CreateThread(function()
 	SetEntityInvincible(ped, true)
 	FreezeEntityPosition(ped, true)
 	TaskStartScenarioInPlace(ped, "WORLD_HUMAN_SMOKING", 0, true);
-
 end)
 Citizen.CreateThread(function()
     while true do
 		Wait(0)
-		if PlayerPedId() then
-            local playerPed = PlayerPedId()
-			local location = GetEntityCoords(playerPed)
-			if GetDistanceBetweenCoords(location, Config.ArmsDealer.x, Config.ArmsDealer.y, Config.ArmsDealer.z, true) < 2 then
-				ESX.ShowHelpNotification('Press ~INPUT_CONTEXT~ to talk to bubba')
-				if IsControlJustPressed(1, 38) then
-					TriggerServerEvent('recovery:weapdude')
-					TriggerServerEvent('sov:notifyPolice')
-				elseif IsControlJustPressed(1, 38) then
-					ESX.ShowNotification('invalid amount')
-				end
+        local playerPed = PlayerPedId()
+		local location = GetEntityCoords(playerPed)
+		local letSleep = true
+		if GetDistanceBetweenCoords(location, Config.ArmsDealer.x, Config.ArmsDealer.y, Config.ArmsDealer.z, true) < 2 then
+		    letSleep = false
+			ESX.ShowHelpNotification('Press ~INPUT_CONTEXT~ to talk to bubba')
+			if IsControlJustPressed(1, 38) then
+				TriggerServerEvent('recovery:weapdude')
+				TriggerServerEvent('sov:notifyPolice')
+			elseif IsControlJustPressed(1, 38) then
+				ESX.ShowNotification('invalid amount')
 			end
+		end
+		if letSleep then
+		    Wait(500)
 		end
 	end
 end)
@@ -176,39 +181,45 @@ end)
 Citizen.CreateThread(function()
     while true do
 		Wait(0)
-		if PlayerPedId() then
-            local playerPed = PlayerPedId()
-			local coords = GetEntityCoords(playerPed)
-			if GetDistanceBetweenCoords(coords, Config.Desk.x, Config.Desk.y, Config.Desk.z, true) < 0.5 then
-				ESX.ShowHelpNotification('Press ~INPUT_CONTEXT~ to decrypt transactions')
-				if IsControlJustPressed(1, 38)then 
-					TriggerServerEvent('recovery:decrypt')
-					TriggerServerEvent('sov:notifyPolice')
-				end
+        local playerPed = PlayerPedId()
+		local coords = GetEntityCoords(playerPed)
+		local letSleep = true
+		if GetDistanceBetweenCoords(coords, Config.Desk.x, Config.Desk.y, Config.Desk.z, true) < 0.5 then
+		    letSleep = false
+			ESX.ShowHelpNotification('Press ~INPUT_CONTEXT~ to decrypt transactions')
+			if IsControlJustPressed(1, 38)then 
+				TriggerServerEvent('recovery:decrypt')
+				TriggerServerEvent('sov:notifyPolice')
 			end
+		end
+		if letSleep then
+		    Wait(500)
 		end
 	end
 end)
 
 
 
-Citizen.CreateThread(function()
+--[[Citizen.CreateThread(function()
     while true do
 		Wait(0)
-		if PlayerPedId() then
-            local playerPed = PlayerPedId()
-			local coords = GetEntityCoords(playerPed)
-			if GetDistanceBetweenCoords(coords, Config.Final.x, Config.Final.y, Config.Final.z, true) < 2 then
-				ESX.ShowHelpNotification('Press ~INPUT_CONTEXT~ to Pose as smuggler')
-				if IsControlJustPressed(1, 38)then 
-					TriggerServerEvent('recovery:smuggler')
-					TriggerServerEvent('sov:notifyPolice')
-				end
+        local playerPed = PlayerPedId()
+		local coords = GetEntityCoords(playerPed)
+		local letSleep = true
+		if GetDistanceBetweenCoords(coords, Config.Final.x, Config.Final.y, Config.Final.z, true) < 2 then
+		    letSleep = false
+			ESX.ShowHelpNotification('Press ~INPUT_CONTEXT~ to Pose as smuggler')
+			if IsControlJustPressed(1, 38)then 
+				TriggerServerEvent('recovery:smuggler')
+				TriggerServerEvent('sov:notifyPolice')
 			end
+		end
+		if letSleep then
+		    Wait(500)
 		end
 	end
 end)
-
+]]
 
 RegisterNetEvent('soviet:noitems')
 AddEventHandler('soviet:noitems', function()
