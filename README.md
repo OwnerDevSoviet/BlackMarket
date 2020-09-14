@@ -1,6 +1,6 @@
 # BlackMarket
 
-This script was develop by OwnerDevSoviet#0001
+This script was developed by OwnerDevSoviet#0001
 
 To change locations please see Config.lua and follow the format given.
 To change weapons given, put the new weapon in config.lua. Remember to write it as such "WEAPON_PISTOL". If lowercase it WILL error.
