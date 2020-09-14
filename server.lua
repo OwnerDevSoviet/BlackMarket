@@ -43,36 +43,37 @@ AddEventHandler('recovery:smuggler', function(price)
 		TriggerClientEvent('soviet:noitems', source)
 	end
 end)
-
 RegisterNetEvent('recovery:weapdude')
 AddEventHandler('recovery:weapdude', function(price)
 	local xPlayer = ESX.GetPlayerFromId(source)
 	local weaponCount = xPlayer.getInventoryItem('weaponcase').count
 	local randomchance = math.random(1, 5)
 
-	if weaponCount > 0  then
-		xPlayer.removeInventoryItem('weaponcase', 1)
-		TriggerClientEvent('soviet:sold', source)
-	end
-	if randomchance == 1 then
-		xPlayer.addWeapon(Config.One, 200)
-		xPlayer.addWeapon(Config.Two, 20)
-	elseif randomchance == 2 then
-		xPlayer.addWeapon(Config.Three, 20)
-		xPlayer.addWeapon(Config.Four, 200)
-	elseif randomchance == 3 then
-		xPlayer.addWeapon(Config.Five, 20)
-		xPlayer.addWeapon(Config.Six, 200)
-	elseif randomchance == 4 then
-		xPlayer.addWeapon(Config.Seven, 200)
-		xPlayer.addWeapon(Config.Eight, 200)
-	elseif randomchance == 5 then
-		xPlayer.addWeapon(Config.Nine, 200)
-		xPlayer.addWeapon(Config.Ten, 200)
-	else
-		TriggerClientEvent('soviet:noitems', source)
+		if weaponCount > 0 and randomchance == 1 then
+			xPlayer.removeInventoryItem('weaponcase', 1)
+			xPlayer.addWeapon(Config.One, 200)
+			xPlayer.addWeapon(Config.Two, 20)
+		elseif weaponCount > 0 and randomchance == 2 then
+			xPlayer.removeInventoryItem('weaponcase', 1)
+			xPlayer.addWeapon(Config.Three, 20)
+			xPlayer.addWeapon(Config.Four, 200)
+		elseif weaponCount > 0 and randomchance == 3 then
+			xPlayer.removeInventoryItem('weaponcase', 1)
+			xPlayer.addWeapon(Config.Five, 20)
+			xPlayer.addWeapon(Config.Six, 200)
+		elseif weaponCount > 0 and randomchance == 4 then
+			xPlayer.removeInventoryItem('weaponcase', 1)
+			xPlayer.addWeapon(Config.Seven, 200)
+			xPlayer.addWeapon(Config.Eight, 200)
+		elseif weaponCount > 0 and randomchance == 5 then
+			xPlayer.removeInventoryItem('weaponcase', 1)
+			xPlayer.addWeapon(Config.Nine, 200)
+			xPlayer.addWeapon(Config.Ten, 200)
+		else
+			TriggerClientEvent('soviet:noitems', source)
 	end
 end)
+
 
 RegisterNetEvent('recovery:payup')
 AddEventHandler('recovery:payup', function(price)
