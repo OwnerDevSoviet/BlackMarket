@@ -69,8 +69,8 @@ AddEventHandler('recovery:weapdude', function(price)
 			xPlayer.removeInventoryItem('weaponcase', 1)
 			xPlayer.addWeapon(Config.Nine, 200)
 			xPlayer.addWeapon(Config.Ten, 200)
-		else
-			TriggerClientEvent('soviet:noitems', source)
+		elseif weaponCount < 0 then
+			TriggerClientEvent('soviet:noitems')
 	end
 end)
 
