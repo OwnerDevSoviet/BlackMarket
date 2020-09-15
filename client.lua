@@ -83,6 +83,13 @@ Citizen.CreateThread(function()
 		    letSleep = false
 			ESX.ShowHelpNotification('Press ~INPUT_CONTEXT~ to talk with Kendro')
 			if IsControlJustPressed(1, 38) then
+				FreezeEntityPosition(PlayerPedId(), true)
+				TaskStartScenarioInPlace(PlayerPedId(), "WORLD_HUMAN_WINDOW_SHOP_BROWSE", 0, true)
+				exports['progressBars']:startUI((15 * 1000), "Passing cash to the vato")
+				TriggerServerEvent('sov:notifyPolice')
+				Wait(15000)
+				FreezeEntityPosition(PlayerPedId(), false)
+				ClearPedTasksImmediately(PlayerPedId())
 				TriggerServerEvent('recovery:paidup', Config.laptopPrice)
 			elseif IsControlJustPressed(1, 38) then
 				ESX.ShowNotification('invalid amount')
@@ -129,8 +136,14 @@ Citizen.CreateThread(function()
 		    letSleep = false
 			ESX.ShowHelpNotification('Press ~INPUT_CONTEXT~ to talk with this vato')
 			if IsControlJustPressed(1, 38) then
-				TriggerServerEvent('recovery:smuggler', Config.laptopPrice)
+				FreezeEntityPosition(PlayerPedId(), true)
+				TaskStartScenarioInPlace(PlayerPedId(), "WORLD_HUMAN_WINDOW_SHOP_BROWSE", 0, true)
+				exports['progressBars']:startUI((15 * 1000), "Passing cash to the vato")
 				TriggerServerEvent('sov:notifyPolice')
+				Wait(15000)
+				FreezeEntityPosition(PlayerPedId(), false)
+				ClearPedTasksImmediately(PlayerPedId())
+				TriggerServerEvent('recovery:smuggler', Config.laptopPrice)
 			elseif IsControlJustPressed(1, 38) then
 				ESX.ShowNotification('invalid amount')
 			end
@@ -165,8 +178,14 @@ Citizen.CreateThread(function()
 		    letSleep = false
 			ESX.ShowHelpNotification('Press ~INPUT_CONTEXT~ to talk to bubba')
 			if IsControlJustPressed(1, 38) then
-				TriggerServerEvent('recovery:weapdude')
+				FreezeEntityPosition(PlayerPedId(), true)
+				TaskStartScenarioInPlace(PlayerPedId(), "WORLD_HUMAN_WINDOW_SHOP_BROWSE", 0, true)
+				exports['progressBars']:startUI((5 * 1000), "Passing weapon crate to bubba")
 				TriggerServerEvent('sov:notifyPolice')
+				Wait(5000)
+				FreezeEntityPosition(PlayerPedId(), false)
+				ClearPedTasksImmediately(PlayerPedId())
+				TriggerServerEvent('recovery:weapdude')
 			elseif IsControlJustPressed(1, 38) then
 				ESX.ShowNotification('invalid amount')
 			end
@@ -188,8 +207,14 @@ Citizen.CreateThread(function()
 		    letSleep = false
 			ESX.ShowHelpNotification('Press ~INPUT_CONTEXT~ to decrypt transactions')
 			if IsControlJustPressed(1, 38)then 
+				FreezeEntityPosition(PlayerPedId(), true)
+				TaskStartScenarioInPlace(PlayerPedId(), "PROP_HUMAN_PARKING_METER", 0, true)
+				exports['progressBars']:startUI((10 * 1000), "Decryting files")
+				TriggerServerEvent('sov:notifyPolice')
+				Wait(10000)
+				FreezeEntityPosition(PlayerPedId(), false)
+				ClearPedTasksImmediately(PlayerPedId())
 				TriggerServerEvent('recovery:decrypt')
-				TriggerServerEvent('sov:notifyPolice')
 			end
 		end
 		if letSleep then
@@ -197,29 +222,6 @@ Citizen.CreateThread(function()
 		end
 	end
 end)
-
-
-
---[[Citizen.CreateThread(function()
-    while true do
-		Wait(0)
-        local playerPed = PlayerPedId()
-		local coords = GetEntityCoords(playerPed)
-		local letSleep = true
-		if GetDistanceBetweenCoords(coords, Config.Final.x, Config.Final.y, Config.Final.z, true) < 2 then
-		    letSleep = false
-			ESX.ShowHelpNotification('Press ~INPUT_CONTEXT~ to Pose as smuggler')
-			if IsControlJustPressed(1, 38)then 
-				TriggerServerEvent('recovery:smuggler')
-				TriggerServerEvent('sov:notifyPolice')
-			end
-		end
-		if letSleep then
-		    Wait(500)
-		end
-	end
-end)
-]]
 
 RegisterNetEvent('soviet:noitems')
 AddEventHandler('soviet:noitems', function()
