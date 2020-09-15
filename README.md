@@ -10,10 +10,3 @@ This script is for esx framework and I have no plan on moving it to vrp or hybri
 This will be my first public release. Current MS on it will be .01!!
 
 Any support for this script or any others join https://discord.gg/nB6QUpt
-
-
-**Add these items to your database**
-usbstick
-usbgolden
-laptop
-weaponcase
