@@ -12,7 +12,7 @@ This will be my first public release. Current MS on it will be .01!!
 Any support for this script or any others join https://discord.gg/nB6QUpt
 
 
-*****Add these items to your databse**********
+*****Add these items to your databse
 usbstick
 usbgolden
 laptop
