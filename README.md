@@ -2,6 +2,8 @@
 
 This script was developed by OwnerDevSoviet#0001
 
+This script dependencies is Progressbar. Please have this started prior to this script.
+
 To change locations please see Config.lua and follow the format given. You must do this as I have added MLOs that you do not have.
 To change weapons given, put the new weapon in config.lua. Remember to write it as such "WEAPON_PISTOL". If lowercase it WILL error.
 
